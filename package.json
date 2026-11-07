@@ -1,0 +1,57 @@
+{
+  "name": "dsh-plan-mode",
+  "version": "0.4.1",
+  "description": "Plan first: ask a Codex (ChatGPT subscription) model for an execution outline before the main model starts each task, and inject it as durable context.",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "planning",
+    "outline",
+    "codex",
+    "gpt",
+    "agent"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "hojoc26",
+    "url": "https://github.com/hojoc26"
+  },
+  "homepage": "https://github.com/hojoc26/dsh-plan-mode#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hojoc26/dsh-plan-mode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hojoc26/dsh-plan-mode/issues"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-chat",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-model-selection"
+      ]
+    }
+  }
+}

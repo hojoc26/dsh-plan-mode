@@ -1,0 +1,32 @@
+# 依赖与构建产物
+node_modules/
+dist/
+*.tgz
+*.zip
+
+# 打包 / 日志
+release/
+*.log
+npm-debug.log*
+
+# 编辑器与系统
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 本地状态与密钥：插件把开关存在 ~/.dsh/plan-mode.json，
+# 任何时候都不应该把用户目录内容或凭据提交进来
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+plan-mode.json
+
+# 临时文件
+.tmp/
+tmp/

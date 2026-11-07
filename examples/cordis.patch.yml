@@ -1,0 +1,44 @@
+# dsh-plan-mode 示例配置
+#
+# 用法：把下面整段追加到
+#   ~/.dsh/profiles/desktop/cordis.patch.yml
+# 末尾（顶层数组元素，缩进照抄），然后重启 DSH 并刷新页面。
+#
+# 说明：
+#   - 只写想改的键，没写的用插件默认值；
+#   - condense / attachments 是浅合并，只写 enabled 不会丢掉其余默认值；
+#   - name 必须等于 package.json 里的 name。
+
+- insert:
+    - id: plan-mode
+      name: 'dsh-plan-mode'
+      config:
+        # ---- 规划器：花谁的额度、用哪个模型 ----
+        provider: openai-codex
+        model: gpt-6.1-sol
+        reasoningEffort: high
+        maxTokens: 10000
+        timeoutMs: 180000
+
+        # ---- 什么时候不规划 ----
+        # 0 = 只要有内容就规划；调大可以挡掉闲聊和一句话任务
+        minChars: 0
+        # 规划失败时是否在对话里插一条原因提示
+        notifyOnFailure: true
+
+        # ---- 长输入先精简（用便宜模型压一遍） ----
+        condense:
+          enabled: true
+          provider: deepseek-account
+          model: deepseek-flash
+          minTokens: 8000
+          maxChars: 6000
+
+        # ---- 附件读取（Office/PDF 提取、图片转发） ----
+        attachments:
+          enabled: true
+          images: true
+          maxChars: 30000
+          timeoutMs: 30000
+          # 留空 = 优先 DSH 自带 python，找不到再退回 PATH 上的 python
+          pythonPath: ''
